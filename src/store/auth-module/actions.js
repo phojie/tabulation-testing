@@ -1,0 +1,21 @@
+import { firebaseAuth } from 'boot/firebase'
+
+export async function signIn ({ commit }, payload) {
+  const email = payload.email
+  const password = payload.password
+
+  await firebaseAuth.signInWithEmailAndPassword(email, password)
+    .then(function (user) {
+      commit('SET_USER', user)
+    })
+    .catch(function (error) {
+      throw error
+    })
+}
+
+export async function signOut ({ commit }) {
+  await firebaseAuth.signOut()
+    .then(() => {
+      commit('SET_USER', {})
+    })
+}
