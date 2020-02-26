@@ -1,26 +1,14 @@
-# Tabulation System (tabulationsystem)
+The Algorithms - Python
+Gitpod Ready-to-Code Gitter chat  Build Status  LGTM  contributions welcome  Donate   
 
-A Einstein Tech Project
+All algorithms implemented in Python (for education)
+These implementations are for learning purposes. They may be less efficient than the implementations in the Python standard library.
 
-## Install the dependencies
-```bash
-yarn
-```
+Contribution Guidelines
+Read our Contribution Guidelines before you contribute.
 
-### Start the app in development mode (hot-code reloading, error reporting, etc.)
-```bash
-quasar dev
-```
+Community Channel
+We're on Gitter! Please join us.
 
-### Lint the files
-```bash
-yarn run lint
-```
-
-### Build the app for production
-```bash
-quasar build
-```
-
-### Customize the configuration
-See [Configuring quasar.conf.js](https://quasar.dev/quasar-cli/quasar-conf-js).
+List of Algorithms
+See our directory.
