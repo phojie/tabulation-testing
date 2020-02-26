@@ -1,0 +1,12 @@
+{
+  "name": "tabulationsystem",
+  "version": "0.0.1",
+  "description": "A Einstein Tech Project",
+  "author": "Phojie <phojrengel@gmail.com>",
+  "private": true,
+  "dependencies": {
+    "@capacitor/android": "^1.5.0",
+    "@capacitor/cli": "^1.0.0",
+    "@capacitor/core": "^1.0.0"
+  }
+}

@@ -9,7 +9,7 @@ export function SET_USER (state, payload) {
 }
 
 export function RESET_USER (state, payload) {
-  state.user = null
+  state.user = {}
 }
 
 export function loading (state, payload) {

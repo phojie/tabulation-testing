@@ -28,7 +28,7 @@
                       <q-icon name="las la-user" />
                     </template>
                   </q-input>
-                  <q-input outlined input-class="text-weight-medium" type="password" label="Security Key" v-model="password">
+                  <q-input ref="passwordRef" outlined input-class="text-weight-medium" type="password" label="Security Key" v-model="password">
                     <template v-slot:prepend>
                       <q-icon name="las la-key" />
                     </template>
@@ -39,6 +39,12 @@
                   </div>
                 </div>
               </q-form>
+              <q-inner-loading :showing="loading">
+                <q-spinner-ios
+                  size="60px"
+                  color="primary"
+                />
+              </q-inner-loading>
             </q-card-section>
 
           </q-card>
@@ -62,7 +68,7 @@ export default {
       const vm = this
       this.loading = true
       this.errorMessage = ''
-      this.$store.dispatch('auth/signIn', {
+      await this.$store.dispatch('auth/signIn', {
         email: this.email,
         password: this.password
       })
@@ -70,17 +76,18 @@ export default {
           vm.$q.notify({
             icon: 'las la-thumbs-up',
             progress: true,
-            position: 'top-right',
+            position: 'bottom-right',
             message: 'Successfully Login',
             color: 'primary',
             textColor: 'white',
             classes: 'glossy'
           })
           vm.loading = false
-          // vm.$router.replace({ name: 'dashboard' })
         })
         .catch(error => {
           vm.loading = false
+          vm.password = ''
+          vm.$refs.passwordRef.focus()
           vm.$q.notify(error.message)
         })
     },

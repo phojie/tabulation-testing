@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 
 import auth from './auth-module'
 import event from './event-module'
+import contestant from './contestant-module'
 
 Vue.use(Vuex)
 
@@ -19,13 +20,21 @@ export default function (/* { ssrContext } */) {
   const Store = new Vuex.Store({
     modules: {
       auth,
-      event
+      event,
+      contestant
     },
 
     // enable strict mode (adds overhead!)
     // for dev mode only
     strict: process.env.DEV
   })
+
+  // if (process.env.DEV && module.hot) {
+  //   module.hot.accept(['./auth-module'], () => {
+  //     const newAuth = require('./auth-module').default
+  //     Store.hotUpdate({ modules: { auth: newAuth } })
+  //   })
+  // }
 
   return Store
 }

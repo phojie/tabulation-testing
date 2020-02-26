@@ -53,15 +53,23 @@ module.exports = function (ctx) {
       plugins: [
         'Notify',
         'Dialog',
-        'LoadingBar'
+        'LoadingBar',
+        'Loading'
       ],
       config: {
         loadingBar: {
+          skipHijack: true,
           color: 'indigo',
           size: '7px',
           position: 'bottom'
+        },
+        loading: {
+          spinnerColor: 'primary',
+          backgroundColor: 'white'
         }
-      }
+      },
+
+      cssAddon: true
     },
 
     // https://quasar.dev/quasar-cli/cli-documentation/supporting-ie

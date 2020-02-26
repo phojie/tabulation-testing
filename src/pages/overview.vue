@@ -1,5 +1,4 @@
 <template>
-  <div>
-    test
-  </div>
+  <q-page padding>
+  </q-page>
 </template>

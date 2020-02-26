@@ -1,5 +1,4 @@
 import { firebaseAuth } from 'boot/firebase'
-
 export async function signIn ({ commit }, payload) {
   const email = payload.email
   const password = payload.password
@@ -14,8 +13,10 @@ export async function signIn ({ commit }, payload) {
 }
 
 export async function signOut ({ commit }) {
+  const vm = this
   await firebaseAuth.signOut()
     .then(() => {
       commit('SET_USER', {})
+      vm.$router.replace({ name: 'login' })
     })
 }

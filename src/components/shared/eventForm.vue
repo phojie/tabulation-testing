@@ -1,36 +1,74 @@
 <template>
-  <q-card style="min-width: 450px">
+  <q-card
+    style="width:450px"
+    class="bg-transparent"
+  >
     <q-card-section class="bg-primary text-white">
       <slot name="headerTitle"></slot>
     </q-card-section>
 
-    <q-card-section class="q-pt-none q-gutter-y-md">
-      <q-input class="text-capitalize" :value="eventForm.title" @input="setTitle($event)" label="Title" autofocus :error="validations.title.$error">
-        <template v-slot:error v-if="!validations.title.required">
+    <q-card-section class="bg-white q-pt-none q-gutter-y-md">
+      <q-input
+        :value="eventForm.title"
+        @input="setTitle($event)"
+        label="Title"
+        autofocus
+        :error="validations.title.$error"
+      >
+        <template
+          v-slot:error
+          v-if="!validations.title.required"
+        >
           Event title is required
         </template>
       </q-input>
-      <q-input :value="eventForm.schedule" @input="setSchedule($event)" mask="date" label="Schedule" :error="validations.schedule.$error">
-        <template v-slot:error v-if="!validations.schedule.required">
+      <q-input
+        :value="eventForm.schedule"
+        @input="setSchedule($event)"
+        mask="date"
+        label="Schedule"
+        :error="validations.schedule.$error"
+      >
+        <template
+          v-slot:error
+          v-if="!validations.schedule.required"
+        >
           Schedule is required
         </template>
         <template v-slot:append>
-          <q-icon name="event" class="cursor-pointer">
-            <q-popup-proxy ref="qDateProxy" transition-show="scale" transition-hide="scale">
-              <q-date v-model="eventForm.schedule" @input="setSchedule($event),$refs.qDateProxy.hide()" />
+          <q-icon
+            name="event"
+            class="cursor-pointer"
+          >
+            <q-popup-proxy
+              ref="qDateProxy"
+              transition-show="scale"
+              transition-hide="scale"
+            >
+              <q-date
+                v-model="eventForm.schedule"
+                @input="setSchedule($event),$refs.qDateProxy.hide()"
+              />
             </q-popup-proxy>
           </q-icon>
         </template>
       </q-input>
     </q-card-section>
 
-    <q-card-actions align="right" class="text-primary">
-      <q-btn flat label="Cancel" v-close-popup />
+    <q-card-actions
+      align="right"
+      class="text-primary bg-white"
+    >
+      <q-btn
+        flat
+        label="Cancel"
+        v-close-popup
+      />
       <slot name="btnType"></slot>
     </q-card-actions>
 
     <q-inner-loading :showing="loading">
-      <q-spinner-gears
+      <q-spinner-pie
         size="50px"
         color="primary"
       />

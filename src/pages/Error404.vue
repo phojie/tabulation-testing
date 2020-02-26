@@ -10,7 +10,7 @@
     <q-btn
       color="secondary"
       style="width:200px;"
-      to="/"
+      :to="{ name: 'dashboard', params: { eventId: 123 }}"
       label="Go back"
     />
   </div>

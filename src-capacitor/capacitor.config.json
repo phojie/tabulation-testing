@@ -1,0 +1,7 @@
+{
+  "appId": "org.cordova.quasar.app",
+  "appName": "Tabulation System",
+  "bundledWebRuntime": false,
+  "npmClient": "yarn",
+  "webDir": "www"
+}
