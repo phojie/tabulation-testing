@@ -1,15 +1,9 @@
 <template>
-  <q-page
-    padding
-    class="flex flex-center"
-  >
-    <q-card
-      flat
-      class="text-blue-grey-9"
-    >
+  <q-page padding class="flex flex-center">
+    <q-card flat class="text-blue-grey-9">
       <q-card-section>
-        <div class="text-h3 text-bold q-mb-lg"> Oooopps! </div>
-        <div class="text-h6"> Looks like you ddn't enter an Event yet, Phojie</div>
+        <div class="text-h3 text-bold q-mb-lg">Oooopps!</div>
+        <div class="text-h6">Looks like you ddn't enter an Event yet, Phojie</div>
       </q-card-section>
       <q-separator />
       <q-card-actions align="right">
@@ -20,16 +14,11 @@
           color="primary"
           class="text-right"
           no-caps
-        >
-          Create Event
-        </q-btn>
+        >Create Event</q-btn>
       </q-card-actions>
     </q-card>
 
-    <q-dialog
-      v-model="prompt"
-      persistent
-    >
+    <q-dialog v-model="prompt" persistent>
       <eventForm
         :eventForm="eventForm"
         :title.sync="eventForm.title"
@@ -40,11 +29,7 @@
           <div class="text-h6">Event Info</div>
         </template>
         <template v-slot:btnType>
-          <q-btn
-            flat
-            label="Add Event"
-            @click="validateInfo"
-          />
+          <q-btn flat label="Add Event" @click="validateInfo" />
         </template>
       </eventForm>
     </q-dialog>
@@ -52,8 +37,8 @@
 </template>
 
 <script>
-import { required } from 'vuelidate/lib/validators'
-import capitalize from 'lodash/capitalize'
+import { required } from "vuelidate/lib/validators";
+import capitalize from "lodash/capitalize";
 export default {
   validations: {
     eventForm: {
@@ -62,65 +47,66 @@ export default {
     }
   },
   components: {
-    eventForm: require('components/shared/eventForm.vue').default
+    eventForm: require("components/shared/eventForm.vue").default
   },
-  data () {
+  data() {
     return {
       prompt: false,
       eventForm: {
-        title: '',
-        schedule: ''
+        title: "",
+        schedule: ""
       }
-    }
+    };
   },
   methods: {
-    validateInfo () {
+    validateInfo() {
       if (this.$v.eventForm.$invalid) {
-        this.$v.eventForm.$touch()
+        this.$v.eventForm.$touch();
       } else {
-        this.addEvent()
+        this.addEvent();
       }
     },
-    addEvent () {
-      const vm = this
-      this.$store.commit('auth/loading', true)
-      this.$store.dispatch('event/addEventAction', this.eventForm)
+    addEvent() {
+      const vm = this;
+      this.$store.commit("auth/loading", true);
+      this.$store
+        .dispatch("event/addEventAction", this.eventForm)
         .then(result => {
-          vm.$store.commit('auth/loading', false)
-          vm.resetEventForm()
-          vm.$v.eventForm.$reset()
-          vm.prompt = false
+          vm.$store.commit("auth/loading", false);
+          vm.resetEventForm();
+          vm.$v.eventForm.$reset();
+          vm.prompt = false;
           vm.$q.notify({
-            message: capitalize(result.title) + ' Event Successfully Added ',
-            color: 'positive',
+            message: capitalize(result.title) + " Event Successfully Added ",
+            color: "positive",
             timeout: 4000,
-            position: 'bottom-right',
-            icon: 'las la-calendar-check'
-          })
+            position: "bottom-right",
+            icon: "las la-calendar-check"
+          });
         })
         .catch(error => {
-          vm.resetEventForm()
-          vm.$v.eventForm.$reset()
-          vm.prompt = false
-          vm.$store.commit('auth/loading', false)
+          vm.resetEventForm();
+          vm.$v.eventForm.$reset();
+          vm.prompt = false;
+          vm.$store.commit("auth/loading", false);
           vm.$q.notify({
-            message: 'Something is wrong, Refresh your page',
-            color: 'negative',
+            message: "Something is wrong, Refresh your page",
+            color: "negative",
             timeout: 4000,
-            position: 'bottom-right',
-            icon: 'warning'
-          })
-          console.log(error)
-        })
+            position: "bottom-right",
+            icon: "warning"
+          });
+          console.log(error);
+        });
     },
-    resetEventForm () {
+    resetEventForm() {
       this.eventForm = {
-        title: '',
-        schedule: ''
-      }
+        title: "",
+        schedule: ""
+      };
     }
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
