@@ -1,5 +1,5 @@
 <template>
-  <q-page padding class="q-pa-lg">
+  <q-page padding>
     <div style="font-size:28px; font-weight:500">Criteria</div>
     <q-separator class="q-my-md" color="indigo-2"></q-separator>
     <div style="height:400px">

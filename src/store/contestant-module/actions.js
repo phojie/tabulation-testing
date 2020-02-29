@@ -87,15 +87,16 @@ export function addContestantAction(context, data) {
     }
   });
 
+  //male area created
   const contestantsName2 = new Promise((resolve, reject) => {
     const contestantRef = fireDB.collection("Owner/CKCM/Contestants/").doc();
     const contestantID = contestantRef.id;
 
-    if (payload.female.profileimg.__img["src"] !== "") {
+    if (payload.male.profileimg.__img["src"] !== "") {
       var uploadTask = fireStorage
         .ref()
         .child("contestantImg/" + contestantID)
-        .put(payload.female.profileimg);
+        .put(payload.male.profileimg);
       uploadTask.on(
         "state_changed",
         function(snapshot) {
@@ -392,7 +393,6 @@ export function updateContestantAction(context, data) {
 }
 
 export function deleteContestantAction(context, payload) {
-  console.log(payload);
   return new Promise(function(resolve, reject) {
     const repreRef = fireDB
       .collection("Owner/CKCM/Representative/")

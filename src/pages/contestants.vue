@@ -1,5 +1,5 @@
 <template>
-  <q-page padding>
+  <q-page padding class="q-px-md-xl">
     <div class="row justify-between">
       <div style="font-size:28px; font-weight:500">Contestants</div>
     </div>
@@ -159,13 +159,14 @@ export default {
   methods: {
     deleteCandidate() {
       let vm = this;
+      vm.$store.commit("auth/loading", true);
       this.$store
         .dispatch("contestant/deleteContestantAction", this.candidatesData)
         .then(result => {
           vm.createContestantDialog = false;
           vm.$store.commit("auth/loading", false);
           vm.$q.notify({
-            message: result + " candidates successfully deleted ",
+            message: "Candidates successfully deleted ",
             timeout: 4000,
             position: "bottom-right",
             icon: "las la-user-tag"
