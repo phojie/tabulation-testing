@@ -1,15 +1,16 @@
-import { firebaseAuth, firebase } from './firebase'
+import { firebaseAuth, firebase } from "./firebase";
 
 export default ({ app, router, Vue, store }) => {
   firebase.firestore().settings({
     cacheSizeBytes: firebase.firestore.CACHE_SIZE_UNLIMITED
-  })
+  });
 
-  firebase.firestore().enablePersistence()
+  firebase.firestore().enablePersistence();
 
   // Register the Firebase authentication listener
-  // firebaseAuth.setPersistence(firebase.auth.Auth.Persistence.SESSION)
-  //   .then(function () {
+  // firebaseAuth
+  //   .setPersistence(firebase.auth.Auth.Persistence.SESSION)
+  //   .then(function() {
   //     // Existing and future Auth states are now persisted in the current
   //     // session only. Closing the window would clear any existing state even
   //     // if a user forgets to sign out.
@@ -18,38 +19,38 @@ export default ({ app, router, Vue, store }) => {
   //     // return this.$firebase.auth().signInWithEmailAndPassword(email, password)
   //     // alert('relogin')
   //   })
-  //   .catch(function (error) {
+  //   .catch(function(error) {
   //     // Handle Errors here.
-  //     var errorCode = error.code
-  //     var errorMessage = error.message
-  //     console.log(errorCode, errorMessage)
-  //   })
+  //     var errorCode = error.code;
+  //     var errorMessage = error.message;
+  //     console.log(errorCode, errorMessage);
+  //   });
 
   router.beforeEach((to, from, next) => {
-    const authRequired = to.matched.some(route => route.meta.authRequired)
-    const loginBa = to.matched.some(route => route.meta.loginRequired)
+    const authRequired = to.matched.some(route => route.meta.authRequired);
+    const loginBa = to.matched.some(route => route.meta.loginRequired);
     firebaseAuth.onAuthStateChanged(user => {
       if (authRequired) {
         if (user) {
-        // User is already signed in. Continue on.
-          store.commit('auth/SET_USER', user)
-          next()
+          // User is already signed in. Continue on.
+          store.commit("auth/SET_USER", user);
+          next();
         } else {
-        // Not signed in. Redirect to login page.
-          store.commit('auth/RESET_USER')
+          // Not signed in. Redirect to login page.
+          store.commit("auth/RESET_USER");
           next({
-            name: 'login'
-          })
+            name: "login"
+          });
         }
       } else if (!authRequired && loginBa && user) {
-        store.commit('auth/SET_USER', user)
+        store.commit("auth/SET_USER", user);
         next({
-          name: 'dashboard'
-        })
+          name: "dashboard"
+        });
       } else {
-        console.log('test')
-        next()
+        console.log("test");
+        next();
       }
-    })
-  })
-}
+    });
+  });
+};
