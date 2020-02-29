@@ -4,7 +4,10 @@
       <q-toolbar>
         <q-toolbar-title>
           <div class="text-weight-bolder text-h5">
-            <q-btn flat @click="drawer = !drawer" round dense icon="menu" />
+            <q-btn flat @click="drawer = !drawer" round dense>
+              <q-icon v-if="drawer" name="keyboard_arrow_left"></q-icon>
+              <q-icon v-else name="keyboard_arrow_right"></q-icon>
+            </q-btn>
             <span v-if="!drawer" class="md">
               <q-avatar size="32px">
                 <img src="/statics/jieIcons/apple-touch-icon-180x180.png" />
