@@ -18,7 +18,7 @@
       </contentantsEmpty>
     </div>
 
-    <div v-if="!dataIsEmpty && !pageLoading" class="q-col-gutter-md row q-my-lg">
+    <div v-if="!dataIsEmpty && !pageLoading" class="q-col-gutter-md row q-my-lg q-mb-xl">
       <contestantList
         :listDetails="listDetails"
         @viewBtn="viewBtn"

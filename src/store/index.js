@@ -1,11 +1,12 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+import Vue from "vue";
+import Vuex from "vuex";
 
-import auth from './auth-module'
-import event from './event-module'
-import contestant from './contestant-module'
+import auth from "./auth-module";
+import event from "./event-module";
+import contestant from "./contestant-module";
+import judge from "./judge-module";
 
-Vue.use(Vuex)
+Vue.use(Vuex);
 
 /*
  * If not building with SSR mode, you can
@@ -16,18 +17,19 @@ Vue.use(Vuex)
  * with the Store instance.
  */
 
-export default function (/* { ssrContext } */) {
+export default function(/* { ssrContext } */) {
   const Store = new Vuex.Store({
     modules: {
       auth,
       event,
-      contestant
+      contestant,
+      judge
     },
 
     // enable strict mode (adds overhead!)
     // for dev mode only
     strict: process.env.DEV
-  })
+  });
 
   // if (process.env.DEV && module.hot) {
   //   module.hot.accept(['./auth-module'], () => {
@@ -36,5 +38,5 @@ export default function (/* { ssrContext } */) {
   //   })
   // }
 
-  return Store
+  return Store;
 }

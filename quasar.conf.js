@@ -111,7 +111,7 @@ module.exports = function(ctx) {
       manifest: {
         name: "Tabulation System",
         short_name: "Tabulation System",
-        description: "A Einstein Tech Project",
+        description: "An Einstein Tech Project",
         display: "standalone",
         orientation: "portrait",
         background_color: "#ffffff",

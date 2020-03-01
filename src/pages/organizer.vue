@@ -4,7 +4,9 @@
     <q-separator class="q-my-md" color="indigo-2"></q-separator>
     <div style="height:400px">
       <contentantsEmpty>
-        <template v-slot:subtitle>Looks like you ddn't enter an organizer to this event yet</template>
+        <template v-slot:subtitle
+          >Looks like you ddn't enter an organizer to this event yet</template
+        >
         <template v-slot:addBtn>
           <q-btn color="primary" no-caps>Add organizer now</q-btn>
         </template>

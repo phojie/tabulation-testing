@@ -8,7 +8,7 @@
               <q-icon v-if="drawer" name="keyboard_arrow_left"></q-icon>
               <q-icon v-else name="keyboard_arrow_right"></q-icon>
             </q-btn>
-            <span v-if="!drawer" class="md">
+            <span v-if="!drawer">
               <q-avatar size="32px">
                 <img src="/statics/jieIcons/apple-touch-icon-180x180.png" />
               </q-avatar>
