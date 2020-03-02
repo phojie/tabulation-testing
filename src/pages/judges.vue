@@ -88,7 +88,7 @@
 <script>
 import filter from "lodash/filter";
 import find from "lodash/find";
-import lowercase from "lodash/lowercase";
+import lowercase from "lodash/lowerCase";
 import { fireDB } from "boot/firebase";
 export default {
   data() {

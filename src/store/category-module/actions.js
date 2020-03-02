@@ -1,5 +1,5 @@
 import { fireDB } from "boot/firebase";
-import lowercase from "lodash/lowercase";
+import lowercase from "lodash/lowerCase";
 import capitalize from "lodash/capitalize";
 
 export function addCategoryAction(context, payload) {
