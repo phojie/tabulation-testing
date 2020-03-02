@@ -5,9 +5,11 @@
         <q-toolbar-title class="text-h6 text-weight-bold">
           Judge {{myindex + 1}}
           <q-btn
+            @click="$emit('regenerate',judgeInfo)"
             style="margin-top:-8px"
             icon="las la-exclamation-triangle"
             flat
+            :loading="loading"
             no-caps
             class="text-caption text-indigo-4"
             label="Regenerate"
@@ -27,7 +29,11 @@
             </div>
 
             <div class="q-mt-xs">
-              <span style="font-size:14px;letter-spacing:2px" v-if="!isPwd">{{judgeInfo.passCode}}</span>
+              <span
+                style="font-size:14px;letter-spacing:2px"
+                class="text-italic"
+                v-if="!isPwd"
+              >{{judgeInfo.passCode}}</span>
               <q-icon
                 style="margin-top:-5px"
                 v-else
@@ -46,7 +52,9 @@
                 icon="las la-copy"
                 @click="copThis"
                 size="8px"
-              />
+              >
+                <q-tooltip>Copy key</q-tooltip>
+              </q-btn>
             </div>
           </div>
         </div>
@@ -74,7 +82,13 @@
           dense
           class="text-caption"
         >Delete</q-btn>
-        <q-btn outline no-caps dense class="text-caption">Edit judge {{myindex+1}}</q-btn>
+        <q-btn
+          @click="$emit('editBtn',judgeInfo)"
+          outline
+          no-caps
+          dense
+          class="text-caption"
+        >Edit judge {{myindex+1}}</q-btn>
       </q-card-actions>
     </q-card>
   </div>
@@ -83,6 +97,11 @@
 <script>
 export default {
   props: ["judgeInfo", "myindex"],
+  computed: {
+    loading() {
+      return this.$store.state.auth.loading;
+    }
+  },
   data() {
     return {
       isPwd: true
@@ -90,7 +109,7 @@ export default {
   },
   methods: {
     copThis() {
-      alert("copied");
+      // alert("copied");
     }
   }
 };

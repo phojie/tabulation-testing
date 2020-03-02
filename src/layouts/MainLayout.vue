@@ -174,11 +174,11 @@ export default {
       loadedBa: false,
       drawer: false,
       linksAvail: [
-        {
-          title: "Overview",
-          avatar: "lab la-dashcube",
-          link: "eventDash"
-        },
+        // {
+        //   title: "Overview",
+        //   avatar: "lab la-dashcube",
+        //   link: "eventDash"
+        // },
         {
           title: "Contestants",
           avatar: "las la-user-tag",
@@ -195,11 +195,11 @@ export default {
           link: "criteria"
         },
 
-        {
-          title: "Organizer",
-          avatar: "las la-universal-access",
-          link: "organizer"
-        },
+        // {
+        //   title: "Organizer",
+        //   avatar: "las la-universal-access",
+        //   link: "organizer"
+        // },
         {
           title: "Score",
           avatar: "las la-star-half-alt",

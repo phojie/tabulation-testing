@@ -6,7 +6,11 @@
       <contentantsEmpty>
         <template v-slot:subtitle>Looks like you ddn't enter a judge to this event yet</template>
         <template v-slot:addBtn>
-          <q-btn color="primary" @click="judgesDialog = true" no-caps>Add judge now</q-btn>
+          <q-btn
+            color="primary"
+            @click="judgesDialog = true; title = 'Create ';resetForm()"
+            no-caps
+          >Add judge now</q-btn>
         </template>
       </contentantsEmpty>
     </div>
@@ -22,7 +26,9 @@
       </div>
 
       <judgesList
+        @regenerate="regenerateBtn"
         @deleteBtn="deleteBtn"
+        @editBtn="editBtn"
         :judgeInfo="judgeInfo"
         :myindex="index  "
         v-for="(judgeInfo, index) in listofJudges"
@@ -36,6 +42,7 @@
         :judgesForm="judgesForm"
         :fullname.sync="judgesForm.fullname"
       >
+        <template v-slot:title>{{title}}</template>
         <template v-slot:closeBtn>
           <q-avatar class="cursor-pointer" size="35px" @click="judgesDialog = false">
             <q-icon color="primary" name="las la-times"></q-icon>
@@ -46,10 +53,19 @@
           <q-btn
             @click="validate"
             :disable="!judgesForm.fullname"
+            v-if="title=='Create '"
             color="primary"
             class="full-width"
             no-caps
           >Create</q-btn>
+          <q-btn
+            v-else
+            @click="validate"
+            :disable="!judgesForm.fullname"
+            color="primary"
+            class="full-width"
+            no-caps
+          >Edit</q-btn>
         </template>
       </createForm>
     </q-dialog>
@@ -59,7 +75,7 @@
     </q-inner-loading>
 
     <q-page-sticky
-      @click="judgesDialog = true"
+      @click="judgesDialog = true; title = 'Create ';resetForm()"
       v-if="!dataIsEmpty && !pageLoading"
       position="bottom-right"
       :offset="[18, 18]"
@@ -72,19 +88,63 @@
 <script>
 import filter from "lodash/filter";
 import find from "lodash/find";
+import lowercase from "lodash/lowercase";
 import { fireDB } from "boot/firebase";
 export default {
   data() {
     return {
+      title: "",
       judgesDialog: false,
       pageLoading: true,
       judgesForm: {
         keyIndex: "",
-        fullname: ""
+        fullname: "",
+        passCode: ""
       }
     };
   },
   methods: {
+    regenerateBtn(payload) {
+      const vm = this;
+      this.$store.commit("auth/loading", true);
+      let myPasscode = this.$randomize("A0", 6);
+      setTimeout(function() {
+        const judgeRef = fireDB
+          .collection("Owner/CKCM/Judges")
+          .doc(payload.keyIndex);
+        judgeRef
+          .update({
+            keyIndex: payload.keyIndex,
+            passCode: myPasscode,
+            fullname: lowercase(payload.fullname)
+          })
+          .then(() => {
+            vm.$store.commit("auth/loading", false);
+            vm.$q.notify({
+              message: "Successfully regenerated a key ",
+              timeout: 4000,
+              position: "bottom-right",
+              icon: "las la-key"
+            });
+          });
+      }, 2000);
+    },
+    resetForm() {
+      this.judgesForm = {
+        keyIndex: "",
+        fullname: "",
+        passCode
+      };
+    },
+    editBtn(data) {
+      this.title = "Edit ";
+      this.judgesDialog = true;
+      this.judgesForm = {
+        keyIndex: data.keyIndex,
+        fullname: data.fullname,
+        passCode: data.passCode
+      };
+    },
     deleteBtn(data) {
       this.$q
         .dialog({
@@ -114,17 +174,54 @@ export default {
       let vm = this;
       if (!this.judgesForm.fullname) {
       } else {
-        this.$store.commit("auth/loading", true);
-        let myPasscode = this.$randomize("A0", 6);
-        setTimeout(function() {
-          vm.createJudge(myPasscode);
-        }, 2000);
+        if (this.title === "Create ") {
+          this.$store.commit("auth/loading", true);
+          let myPasscode = this.$randomize("A0", 6);
+          setTimeout(function() {
+            vm.createJudge(myPasscode);
+          }, 2000);
+        } else {
+          this.$store.commit("auth/loading", true);
+          vm.updateJudge();
+        }
       }
+    },
+    updateJudge() {
+      const vm = this;
+
+      this.$store
+        .dispatch("judge/updateJudgeAction", {
+          keyIndex: this.judgesForm.keyIndex,
+          fullname: this.judgesForm.fullname,
+          eventId: this.$route.params.eventId,
+          passCode: this.judgesForm.passCode
+        })
+        .then(result => {
+          vm.$store.commit("auth/loading", false);
+          vm.$q.notify({
+            message: result + " successfully updated as a judge ",
+            timeout: 4000,
+            position: "bottom-right",
+            icon: "las la-user-tag"
+          });
+          vm.judgesDialog = false;
+          vm.judgesForm.fullname = "";
+        })
+        .catch(error => {
+          vm.$store.commit("auth/loading", false);
+          3;
+          vm.$q.notify({
+            message: "Internet is down, Refresh your page",
+            color: "negative",
+            timeout: 4000,
+            position: "bottom-right",
+            icon: "warning"
+          });
+          console.log(error);
+        });
     },
     createJudge(passcode) {
       const vm = this;
-      vm.$store.commit("auth/loading", true);
-
       this.$store
         .dispatch("judge/addJudgeAction", {
           fullname: this.judgesForm.fullname,

@@ -5,6 +5,7 @@ import auth from "./auth-module";
 import event from "./event-module";
 import contestant from "./contestant-module";
 import judge from "./judge-module";
+import category from "./category-module";
 
 Vue.use(Vuex);
 
@@ -23,7 +24,8 @@ export default function(/* { ssrContext } */) {
       auth,
       event,
       contestant,
-      judge
+      judge,
+      category
     },
 
     // enable strict mode (adds overhead!)

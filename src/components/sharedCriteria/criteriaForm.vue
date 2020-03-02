@@ -2,7 +2,7 @@
   <q-card style="width: 640px;max-width:700px " class="scrollbar-secondary q-pa-md">
     <q-toolbar>
       <q-toolbar-title class="text-h5 text-weight-medium text-blue-grey-10">
-        <slot name="title"></slot>judge
+        <slot name="title"></slot>Category
       </q-toolbar-title>
       <slot name="closeBtn"></slot>
     </q-toolbar>
@@ -13,22 +13,19 @@
         <div class="q-pr-sm">
           <q-icon size="18px" color="indigo-5" name="las la-info-circle" />
         </div>
-        <div class="col">
-          Creating a judge automatically generate
-          a key/code. This is useful when the judges want to
-          login there own application account during the event.
-        </div>
+        <div
+          class="col"
+        >Creating a category for the criteria automatically have a default posible score of 100%</div>
       </div>
-
       <div class="q-mt-lg">
-        <label class="text-blue-grey-9">Judge name</label>
+        <label class="text-blue-grey-9">Category name</label>
         <q-input
           autofocus
           @keyup.enter="$emit('validate')"
-          @input="setFullname($event)"
-          :value="judgesForm.fullname"
+          @input="setCategory($event)"
+          :value="category.name"
           class="q-mt-xs text-capitalize"
-          placeholder="Judge name to add"
+          placeholder="Category name to add"
           outlined
           dense
         ></q-input>
@@ -53,20 +50,19 @@
 
 <script>
 export default {
-  // name: 'ComponentName',
-  props: ["judgesForm"],
-  data() {
-    return {};
-  },
+  props: ["category"],
   computed: {
     loading() {
       return this.$store.state.auth.loading;
     }
   },
   methods: {
-    setFullname(data) {
-      this.$emit("update:fullname", data);
+    setCategory(data) {
+      this.$emit("update:name", data);
     }
   }
 };
 </script>
+
+<style lang="scss" scoped>
+</style>
