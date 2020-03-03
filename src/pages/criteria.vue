@@ -2,7 +2,7 @@
   <q-page padding>
     <div style="font-size:28px; font-weight:500">Criteria</div>
     <q-separator class="q-my-md" color="indigo-2"></q-separator>
-    <div style="height:400px">
+    <div v-if="dataIsEmpty && !pageLoading" style="height:400px">
       <contentantsEmpty>
         <template v-slot:subtitle>Looks like you ddn't enter a criteria to this event yet</template>
         <template v-slot:addBtn>
@@ -10,7 +10,9 @@
         </template>
       </contentantsEmpty>
     </div>
-    <!-- <div v-if="!dataIsEmpty && !pageLoading">Test</div> -->
+    <div v-if="!dataIsEmpty && !pageLoading">
+      <criteriaLists />
+    </div>
     <q-dialog position="top" content-style="background-color:#3f51b559" v-model="criteriaDialog">
       <criteriaForm @validate="validate" :category="category" :name.sync="category.name">
         <template v-slot:title>{{title}}</template>
@@ -34,6 +36,9 @@
         </template>
       </criteriaForm>
     </q-dialog>
+    <q-inner-loading :showing="pageLoading">
+      <q-spinner-pie size="150px" color="primary" />
+    </q-inner-loading>
   </q-page>
 </template>
 
@@ -86,7 +91,7 @@ export default {
         .then(result => {
           vm.$store.commit("auth/loading", false);
           vm.$q.notify({
-            message: result + " successfully added category ",
+            message: result + " successfully deleted category ",
             timeout: 4000,
             position: "bottom-right",
             icon: "las la-user-tag"
@@ -121,7 +126,9 @@ export default {
   components: {
     contentantsEmpty: require("components/emptyData/contestantsEmpty.vue")
       .default,
-    criteriaForm: require("components/sharedCriteria/criteriaForm.vue").default
+    criteriaForm: require("components/sharedCriteria/criteriaForm.vue").default,
+    criteriaLists: require("components//sharedCriteria/criteriaLists.vue")
+      .default
   }
 };
 </script>

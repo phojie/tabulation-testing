@@ -1,7 +1,6 @@
 import vue from "vue";
 
 export function categoryActionMutation(state, payload) {
-  console.log(payload);
   vue.set(state.listofCategories, payload.keyIndex, payload);
 }
 

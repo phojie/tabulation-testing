@@ -146,6 +146,7 @@ export default {
       };
     },
     deleteBtn(data) {
+      let vm = this;
       this.$q
         .dialog({
           title: "Confirm",
@@ -161,6 +162,12 @@ export default {
             .delete();
         })
         .onOk(() => {
+          vm.$q.notify({
+            message: data.name + " successfully added category ",
+            timeout: 4000,
+            position: "bottom-right",
+            icon: "las la-user-tag"
+          });
           // console.log('>>>> second OK catcher')
         })
         .onCancel(() => {
