@@ -53,6 +53,8 @@
                 hide-upload-btn
                 bordered
                 class="full-width fit"
+                color="white"
+                text-color="indigo"
                 accept="image/*"
                 v-on:added="$emit('addMalePicture', $event)"
               >
@@ -142,6 +144,8 @@
                 flat
                 hide-upload-btn
                 bordered
+                color="white"
+                text-color="indigo"
                 class="full-width fit"
                 v-on:added="$emit('addFemalePicture', $event)"
               >

@@ -22,7 +22,7 @@
             square
             color="white"
             text-color="primary"
-            class="text-weight-bold"
+            class="text-weight-bold text-capitalize"
             style="letter-spacing:1px"
             icon="event_note"
           >{{eventChoose.eventTitle}}</q-chip>
