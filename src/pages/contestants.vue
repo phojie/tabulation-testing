@@ -79,7 +79,7 @@
     <q-page-sticky
       @click="$v.candidatesData.$reset(), createContestantDialog = true, dialogTitle = 'create ', resetForm()"
       v-if="!dataIsEmpty && !pageLoading"
-      position="bottom-left"
+      position="bottom-right"
       :offset="[18, 18]"
     >
       <q-btn size="md" icon="add" glossy push color="indigo"></q-btn>
