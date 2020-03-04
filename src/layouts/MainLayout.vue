@@ -1,23 +1,8 @@
 <template>
-  <q-layout view="lHh Lpr lFf">
+  <q-layout view="hHr lpR fFf">
     <q-header elevated>
       <q-toolbar>
-        <q-toolbar-title>
-          <div class="text-weight-bolder text-h5">
-            <q-btn flat @click="drawer = !drawer" round dense>
-              <q-icon v-if="drawer" name="keyboard_arrow_left"></q-icon>
-              <q-icon v-else name="keyboard_arrow_right"></q-icon>
-            </q-btn>
-            <span v-if="!drawer">
-              <q-avatar size="32px">
-                <img src="/statics/jieIcons/apple-touch-icon-180x180.png" />
-              </q-avatar>
-              Tabulation System v{{ $q.version }}
-            </span>
-          </div>
-        </q-toolbar-title>
-
-        <div>
+        <q-toolbar-title class="q-ml-md-lg q-ml-xs-none">
           <q-chip
             square
             color="white"
@@ -26,11 +11,23 @@
             style="letter-spacing:1px"
             icon="event_note"
           >{{eventChoose.eventTitle}}</q-chip>
+        </q-toolbar-title>
+        <div class="text-weight-bolder text-h5">
+          <q-btn flat @click="drawer = !drawer" round dense>
+            <q-icon v-if="!drawer" name="keyboard_arrow_left"></q-icon>
+            <q-icon v-else name="keyboard_arrow_right"></q-icon>
+          </q-btn>
+          <span v-if="!drawer">
+            <q-avatar size="32px">
+              <img src="/statics/jieIcons/apple-touch-icon-180x180.png" />
+            </q-avatar>
+            Tabulation System v{{ $q.version }}
+          </span>
         </div>
       </q-toolbar>
     </q-header>
 
-    <q-drawer v-model="drawer" show-if-above :width="260" dark>
+    <q-drawer side="right" v-model="drawer" show-if-above :width="260" dark>
       <q-scroll-area
         style="height: calc(100% - 260px); margin-top: 150px; border-right: 1px solid #ddd"
       >

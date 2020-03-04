@@ -80,7 +80,7 @@
       position="bottom-right"
       :offset="[18, 18]"
     >
-      <q-btn round size="lg" icon="add" glossy push color="indigo"></q-btn>
+      <q-btn size="md" icon="add" glossy push color="indigo"></q-btn>
     </q-page-sticky>
   </q-page>
 </template>

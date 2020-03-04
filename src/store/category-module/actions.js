@@ -11,7 +11,25 @@ export function addCategoryAction(context, payload) {
       keyIndex: catRefId,
       name: lowercase(payload.name),
       eventKeyindex: payload.eventId,
-      score: 100
+      criteriaList: payload.criteriaList
+    });
+    resolve(capitalize(payload.name)).catch(function(error) {
+      resolve(error);
+    });
+  });
+}
+
+export function updateCategoryAction(context, payload) {
+  return new Promise(function(resolve, reject) {
+    const catRef = fireDB
+      .collection("Owner/CKCM/Categories")
+      .doc(payload.keyIndex);
+
+    catRef.update({
+      keyIndex: payload.keyIndex,
+      name: lowercase(payload.name),
+      eventKeyindex: payload.eventId,
+      criteriaList: payload.criteriaList
     });
     resolve(capitalize(payload.name)).catch(function(error) {
       resolve(error);
