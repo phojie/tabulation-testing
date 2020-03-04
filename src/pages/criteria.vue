@@ -175,6 +175,38 @@ export default {
         }
       }
     },
+    createCategory() {
+      const vm = this;
+      this.$store
+        .dispatch("category/addCategoryAction", {
+          name: this.category.name,
+          criteriaList: this.category.criterias,
+          eventId: this.$route.params.eventId
+        })
+        .then(result => {
+          vm.$store.commit("auth/loading", false);
+          vm.$q.notify({
+            message: result + " successfully added category ",
+            timeout: 4000,
+            position: "bottom-right",
+            icon: "las la-user-tag"
+          });
+          vm.criteriaDialog = false;
+          vm.category.name = "";
+        })
+        .catch(error => {
+          vm.$store.commit("auth/loading", false);
+          3;
+          vm.$q.notify({
+            message: "Internet is down, Refresh your page",
+            color: "negative",
+            timeout: 4000,
+            position: "bottom-right",
+            icon: "warning"
+          });
+          console.log(error);
+        });
+    },
     updateCategory() {
       const vm = this;
       this.$store
@@ -209,38 +241,7 @@ export default {
         });
     }
   },
-  createCategory() {
-    const vm = this;
-    this.$store
-      .dispatch("category/addCategoryAction", {
-        name: this.category.name,
-        criteriaList: this.category.criterias,
-        eventId: this.$route.params.eventId
-      })
-      .then(result => {
-        vm.$store.commit("auth/loading", false);
-        vm.$q.notify({
-          message: result + " successfully added category ",
-          timeout: 4000,
-          position: "bottom-right",
-          icon: "las la-user-tag"
-        });
-        vm.criteriaDialog = false;
-        vm.category.name = "";
-      })
-      .catch(error => {
-        vm.$store.commit("auth/loading", false);
-        3;
-        vm.$q.notify({
-          message: "Internet is down, Refresh your page",
-          color: "negative",
-          timeout: 4000,
-          position: "bottom-right",
-          icon: "warning"
-        });
-        console.log(error);
-      });
-  },
+
   created() {
     let vm = this;
     this.$store
