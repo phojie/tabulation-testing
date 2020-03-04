@@ -192,7 +192,15 @@ export default {
             icon: "las la-user-tag"
           });
           vm.criteriaDialog = false;
-          vm.category.name = "";
+          vm.category = {
+            name: "",
+            keyIndex: "",
+            criteriaForm: {
+              name: "",
+              rating: ""
+            },
+            criterias: []
+          };
         })
         .catch(error => {
           vm.$store.commit("auth/loading", false);
