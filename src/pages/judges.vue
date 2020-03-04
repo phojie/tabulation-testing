@@ -77,7 +77,7 @@
     <q-page-sticky
       @click="judgesDialog = true; title = 'Create ';resetForm()"
       v-if="!dataIsEmpty && !pageLoading"
-      position="bottom-right"
+      position="bottom-left"
       :offset="[18, 18]"
     >
       <q-btn size="md" icon="add" glossy push color="indigo"></q-btn>
@@ -123,7 +123,7 @@ export default {
             vm.$q.notify({
               message: "Successfully regenerated a key ",
               timeout: 4000,
-              position: "bottom-right",
+              position: "bottom-left",
               icon: "las la-key"
             });
           });
@@ -133,7 +133,7 @@ export default {
       this.judgesForm = {
         keyIndex: "",
         fullname: "",
-        passCode
+        passCode: ""
       };
     },
     editBtn(data) {
@@ -165,7 +165,7 @@ export default {
           vm.$q.notify({
             message: data.name + " successfully added category ",
             timeout: 4000,
-            position: "bottom-right",
+            position: "bottom-left",
             icon: "las la-user-tag"
           });
           // console.log('>>>> second OK catcher')
@@ -208,7 +208,7 @@ export default {
           vm.$q.notify({
             message: result + " successfully updated as a judge ",
             timeout: 4000,
-            position: "bottom-right",
+            position: "bottom-left",
             icon: "las la-user-tag"
           });
           vm.judgesDialog = false;
@@ -221,7 +221,7 @@ export default {
             message: "Internet is down, Refresh your page",
             color: "negative",
             timeout: 4000,
-            position: "bottom-right",
+            position: "bottom-left",
             icon: "warning"
           });
           console.log(error);
@@ -240,7 +240,7 @@ export default {
           vm.$q.notify({
             message: result + " successfully added as a judge ",
             timeout: 4000,
-            position: "bottom-right",
+            position: "bottom-left",
             icon: "las la-user-tag"
           });
           vm.judgesDialog = false;
@@ -253,7 +253,7 @@ export default {
             message: "Internet is down, Refresh your page",
             color: "negative",
             timeout: 4000,
-            position: "bottom-right",
+            position: "bottom-left",
             icon: "warning"
           });
           console.log(error);

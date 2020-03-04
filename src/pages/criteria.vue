@@ -57,7 +57,7 @@
     <q-page-sticky v-if="!dataIsEmpty && !pageLoading" position="bottom-right" :offset="[18, 18]">
       <q-btn
         size="md"
-        @click="criteriaDialog = true; title = 'Create '"
+        @click="criteriaDialog = true; title = 'Create ';resetForm()"
         icon="add"
         glossy
         push
@@ -105,6 +105,17 @@ export default {
     }
   },
   methods: {
+    resetForm() {
+      this.category = {
+        name: "",
+        keyIndex: "",
+        criteriaForm: {
+          name: "",
+          rating: ""
+        },
+        criterias: []
+      };
+    },
     updateBtn(data) {
       let vm = this;
       const list = data.criteriaList;
@@ -137,7 +148,7 @@ export default {
           vm.$q.notify({
             message: data.name + " successfully deleted category ",
             timeout: 4000,
-            position: "bottom-right",
+            position: "bottom-left",
             icon: "las la-user-tag"
           });
         })
@@ -188,7 +199,7 @@ export default {
           vm.$q.notify({
             message: result + " successfully added category ",
             timeout: 4000,
-            position: "bottom-right",
+            position: "bottom-left",
             icon: "las la-user-tag"
           });
           vm.criteriaDialog = false;
@@ -209,7 +220,7 @@ export default {
             message: "Internet is down, Refresh your page",
             color: "negative",
             timeout: 4000,
-            position: "bottom-right",
+            position: "bottom-left",
             icon: "warning"
           });
           console.log(error);
@@ -229,7 +240,7 @@ export default {
           vm.$q.notify({
             message: result + " successfully updated category ",
             timeout: 4000,
-            position: "bottom-right",
+            position: "bottom-left",
             icon: "las la-user-tag"
           });
           vm.criteriaDialog = false;
@@ -242,7 +253,7 @@ export default {
             message: "Internet is down, Refresh your page",
             color: "negative",
             timeout: 4000,
-            position: "bottom-right",
+            position: "bottom-left",
             icon: "warning"
           });
           console.log(error);

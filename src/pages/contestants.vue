@@ -79,7 +79,7 @@
     <q-page-sticky
       @click="$v.candidatesData.$reset(), createContestantDialog = true, dialogTitle = 'create ', resetForm()"
       v-if="!dataIsEmpty && !pageLoading"
-      position="bottom-right"
+      position="bottom-left"
       :offset="[18, 18]"
     >
       <q-btn size="md" icon="add" glossy push color="indigo"></q-btn>
@@ -168,7 +168,7 @@ export default {
           vm.$q.notify({
             message: "Candidates successfully deleted ",
             timeout: 4000,
-            position: "bottom-right",
+            position: "bottom-left",
             icon: "las la-user-tag"
           });
         })
@@ -179,7 +179,7 @@ export default {
             message: "Internet is down, Refresh your page",
             color: "negative",
             timeout: 4000,
-            position: "bottom-right",
+            position: "bottom-left",
             icon: "warning"
           });
           console.log(error);
@@ -252,7 +252,7 @@ export default {
           vm.$q.notify({
             message: result + " candidates successfully updated ",
             timeout: 4000,
-            position: "bottom-right",
+            position: "bottom-left",
             icon: "las la-user-tag"
           });
         })
@@ -263,7 +263,7 @@ export default {
             message: "Internet is down, Refresh your page",
             color: "negative",
             timeout: 4000,
-            position: "bottom-right",
+            position: "bottom-left",
             icon: "warning"
           });
           console.log(error);
@@ -311,7 +311,7 @@ export default {
           vm.$q.notify({
             message: result + " candidates successfully added ",
             timeout: 4000,
-            position: "bottom-right",
+            position: "bottom-left",
             icon: "las la-user-tag"
           });
           vm.resetForm();
@@ -323,7 +323,7 @@ export default {
             message: "Something is wrong, Refresh your page",
             color: "negative",
             timeout: 4000,
-            position: "bottom-right",
+            position: "bottom-left",
             icon: "warning"
           });
           console.log(error);
