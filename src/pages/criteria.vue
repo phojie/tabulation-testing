@@ -46,7 +46,7 @@
             color="primary"
             class="full-width"
             no-caps
-          >Edit</q-btn>
+          >Update</q-btn>
         </template>
       </criteriaForm>
     </q-dialog>
