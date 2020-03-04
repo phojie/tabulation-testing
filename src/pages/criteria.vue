@@ -54,7 +54,7 @@
       <q-spinner-pie size="150px" color="primary" />
     </q-inner-loading>
 
-    <q-page-sticky v-if="!dataIsEmpty && !pageLoading" position="bottom-right" :offset="[18, 18]">
+    <q-page-sticky v-if="!dataIsEmpty && !pageLoading" position="bottom-left" :offset="[18, 18]">
       <q-btn
         size="md"
         @click="criteriaDialog = true; title = 'Create ';resetForm()"
