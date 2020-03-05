@@ -1,9 +1,9 @@
 <template>
   <q-layout>
     <q-page-container>
-      <q-page padding class="flex flex-center bg-blue-grey-1">
+      <q-page padding class="flex flex-center bg-white">
         <div class="fit row wrap justify-center items-center content-center">
-          <q-card class="q-pa-md col-md-4 col-sm-9 col-xs-12 shadow-23">
+          <q-card class="q-pa-md col-md-4 col-sm-9 col-xs-12" flat>
             <q-card-section>
               <div class="text-center q-mb-xs">
                 <q-avatar size="100px">

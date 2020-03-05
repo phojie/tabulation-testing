@@ -11,7 +11,7 @@
         <q-btn round flat size="md" class="q-mr-md-sm">
           <!-- <q-badge class="q-mt-sm" color="red" floating>1</q-badge> -->
 
-          <q-icon name="notifications"></q-icon>
+          <!-- <q-icon name="notifications"></q-icon> -->
           <q-tooltip
             transition-show="scale"
             transition-hide="scale"
