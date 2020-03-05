@@ -45,7 +45,7 @@
         <!-- MALE FOORRRRRRRRRRMMMMMMMMMMMMMMM -->
 
         <q-tab-panel name="male">
-          <div class="row q-col-gutter-md">
+          <div class="row q-col-gutter-md reverse">
             <div class="col-md-6 col-xs-12">
               <q-uploader
                 label="Male Contestant image"
@@ -137,7 +137,7 @@
         </q-tab-panel>
         <!-- FEMALEEEEEEEEEEEEE FORM -->
         <q-tab-panel name="female">
-          <div class="row q-col-gutter-md">
+          <div class="row q-col-gutter-md reverse">
             <div class="col-md-6 col-xs-12">
               <q-uploader
                 label="Female Contestant image"

@@ -61,7 +61,7 @@
           <template v-else class="full-width">
             <q-btn color="negative" @click="deleteCandidate" no-caps>Delete</q-btn>
             <q-btn
-              color="warning"
+              color="indigo"
               :disable="$v.candidatesData.$error"
               class="col"
               @click="validate"
