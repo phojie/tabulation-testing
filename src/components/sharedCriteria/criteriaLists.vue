@@ -1,15 +1,15 @@
 <template>
-  <div class="col-md-3 col-sm-6 col-xs-12">
+  <div class="col-md-4 col-sm-6 col-xs-12">
     <q-card>
-      <q-toolbar class="bg-indigo-1 text-indigo">
+      <q-toolbar class="bg-indigo text-white">
         <q-toolbar-title class="text-weight-bold text-body1 text-capitalize">{{listData.name}}</q-toolbar-title>
       </q-toolbar>
       <q-card-section>
         <div class="text-overline">Criteria</div>
-        <q-list>
+        <q-list class="scrollbar-primary" style="height:200px; overflow:auto">
           <q-item v-for="(listCriteria,index) in listData.criteriaList" :key="index">
             <q-item-section avatar>
-              <q-avatar color="indigo-1" text-color="text-indigo-9">
+              <q-avatar color="indigo" text-color="white">
                 <span class="text-caption">{{listCriteria.rating}}%</span>
               </q-avatar>
             </q-item-section>

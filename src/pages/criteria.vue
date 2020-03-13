@@ -1,5 +1,5 @@
 <template>
-  <q-page padding>
+  <q-page padding class="q-px-md-xl">
     <div style="font-size:28px; font-weight:500">Criteria</div>
     <q-separator class="q-my-md" color="indigo-2"></q-separator>
     <div v-if="dataIsEmpty && !pageLoading" style="height:400px">
@@ -10,12 +10,12 @@
         </template>
       </contentantsEmpty>
     </div>
-    <div v-if="!dataIsEmpty && !pageLoading" class="row q-col-gutter-md">
+    <div v-if="!dataIsEmpty && !pageLoading" class="q-mt-lg row q-col-gutter-md">
       <criteriaLists
         @deleteBtn="deleteBtn"
         @upddateBtn="updateBtn"
-        :key="index"
-        v-for="(listData,index) in listofCategories"
+        :key="listData.keyIndex"
+        v-for="listData in listofCategories"
         :listData="listData"
       />
     </div>
@@ -84,7 +84,8 @@ export default {
         keyIndex: "",
         criteriaForm: {
           name: "",
-          rating: ""
+          rating: "",
+          score: ""
         },
         criterias: []
       },
@@ -93,11 +94,11 @@ export default {
   },
   computed: {
     listofCategories() {
-      let data = filter(
-        this.$store.state.category.listofCategories,
-        "keyIndex"
-      );
-      return data;
+      // let data = filter(
+      //   this.$store.state.category.listofCategories,
+      //   "keyIndex"
+      // );
+      return this.$store.state.category.listofCategories;
     },
     dataIsEmpty() {
       let data = find(this.listofCategories, "keyIndex");
@@ -111,7 +112,8 @@ export default {
         keyIndex: "",
         criteriaForm: {
           name: "",
-          rating: ""
+          rating: "",
+          score: ""
         },
         criterias: []
       };
@@ -163,12 +165,24 @@ export default {
       vue.delete(this.category.criterias, index);
     },
     validateCriteria() {
-      let data = this.category.criteriaForm;
-      this.category.criterias.push(data);
-      this.category.criteriaForm = {
-        name: "",
-        rating: ""
-      };
+      let partialCriteria = 0;
+      forEach(this.category.criterias, function(value) {
+        partialCriteria += parseInt(value.rating);
+      });
+
+      let totalCriteria =
+        partialCriteria + parseInt(this.category.criteriaForm.rating);
+      console.log(totalCriteria);
+
+      if (totalCriteria <= 100) {
+        let data = this.category.criteriaForm;
+        this.category.criterias.push(data);
+        this.category.criteriaForm = {
+          name: "",
+          rating: "",
+          score: ""
+        };
+      }
     },
     validate() {
       let vm = this;

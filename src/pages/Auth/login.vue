@@ -92,15 +92,15 @@ export default {
           password: this.password
         })
         .then(user => {
-          vm.$q.notify({
-            icon: "las la-thumbs-up",
-            progress: true,
-            position: "bottom-right",
-            message: "Successfully Login",
-            color: "primary",
-            textColor: "white",
-            classes: "glossy"
-          });
+          // vm.$q.notify({
+          //   icon: "las la-thumbs-up",
+          //   progress: true,
+          //   position: "bottom-right",
+          //   message: "Successfully Login",
+          //   color: "primary",
+          //   textColor: "white",
+          //   classes: "glossy"
+          // });
           vm.loading = false;
         })
         .catch(error => {

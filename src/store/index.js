@@ -6,6 +6,7 @@ import event from "./event-module";
 import contestant from "./contestant-module";
 import judge from "./judge-module";
 import category from "./category-module";
+import score from "./score-module";
 
 Vue.use(Vuex);
 
@@ -25,7 +26,8 @@ export default function(/* { ssrContext } */) {
       event,
       contestant,
       judge,
-      category
+      category,
+      score
     },
 
     // enable strict mode (adds overhead!)

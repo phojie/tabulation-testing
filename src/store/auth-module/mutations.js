@@ -15,3 +15,7 @@ export function RESET_USER(state, payload) {
 export function loading(state, payload) {
   state.loading = payload;
 }
+
+export function settingsActionMutation(state, payload) {
+  state.settings = payload.doneAlready;
+}

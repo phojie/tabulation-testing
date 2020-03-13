@@ -1,18 +1,31 @@
-import { fireDB } from "boot/firebase";
+import { fireDB, firebaseAuth } from "boot/firebase";
 import lowercase from "lodash/lowerCase";
 import capitalize from "lodash/capitalize";
 
 export function addJudgeAction(context, payload) {
+  console.log(payload.passcode);
   return new Promise(function(resolve, reject) {
     const judgeRef = fireDB.collection("Owner/CKCM/Judges/").doc();
     const judgeRefId = judgeRef.id;
-
+    const email = `J${payload.passcode}@ckcm.com`;
     judgeRef.set({
       keyIndex: judgeRefId,
       fullname: lowercase(payload.fullname),
       eventKeyindex: payload.eventId,
-      passCode: payload.passcode
+      passCode: payload.passcode,
+      email: capitalize(email)
     });
+
+    firebaseAuth
+      .createUserWithEmailAndPassword(capitalize(email), "jiejie")
+      .catch(function(error) {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        reject(errorMessage);
+        // ...
+      });
+
     resolve(capitalize(payload.fullname)).catch(function(error) {
       resolve(error);
     });

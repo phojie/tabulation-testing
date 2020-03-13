@@ -163,7 +163,7 @@ export default {
         })
         .onOk(() => {
           vm.$q.notify({
-            message: data.name + " successfully added category ",
+            message: "Successfully deleted category ",
             timeout: 4000,
             position: "bottom-left",
             icon: "las la-user-tag"

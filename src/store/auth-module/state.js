@@ -1,6 +1,7 @@
-export default function () {
+export default function() {
   return {
     user: null,
-    loading: false
-  }
+    loading: false,
+    settings: null
+  };
 }

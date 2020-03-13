@@ -23,9 +23,7 @@
         </q-btn>
         <q-btn round flat size="md" color="deep-purple-10">
           <q-avatar class="text-bold" size="md" color="deep-purple-7" text-color="white">
-            <img
-              src="https://upload.wikimedia.org/wikipedia/en/thumb/3/3b/SpongeBob_SquarePants_character.svg/1200px-SpongeBob_SquarePants_character.svg.png"
-            />
+            <img src="https://threadreaderapp.com/images/avatars/unknown" />
           </q-avatar>
 
           <q-menu transition-show="jump-down" transition-hide="flip-up">
@@ -38,9 +36,7 @@
 
               <div class="column items-center">
                 <q-avatar size="72px">
-                  <img
-                    src="https://upload.wikimedia.org/wikipedia/en/thumb/3/3b/SpongeBob_SquarePants_character.svg/1200px-SpongeBob_SquarePants_character.svg.png"
-                  />
+                  <img src="https://threadreaderapp.com/images/avatars/unknown" />
                 </q-avatar>
 
                 <div class="text-subtitle1 q-mt-md q-mb-xs">System Administrator</div>

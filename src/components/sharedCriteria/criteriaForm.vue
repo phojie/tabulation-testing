@@ -68,7 +68,12 @@
 
     <q-card-section class="q-pt-none">
       <q-separator class="q-mb-md"></q-separator>
-      <q-table hide-bottom :data="listofCategory" :columns="columns" row-key="name">
+      <q-table
+        :rows-per-page-options="[0]"
+        :data="listofCategory"
+        :columns="columns"
+        row-key="name"
+      >
         <template v-slot:body="props">
           <q-tr :props="props" class="text-capitalize">
             <q-td key="name" :props="props">{{props.row.name}}</q-td>

@@ -19,7 +19,6 @@
           login there own application account during the event.
         </div>
       </div>
-
       <div class="q-mt-lg">
         <label class="text-blue-grey-9">Judge name</label>
         <q-input

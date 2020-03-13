@@ -114,7 +114,7 @@
           </q-item-section>
           <q-item-section style="margin-left:-15px">
             <q-item-label lines="1" class="text-subtitle1 text-bold">Ckcm Admin</q-item-label>
-            <q-item-label class="text-white" caption>{{user.email}}</q-item-label>
+            <q-item-label class="text-white" caption>iadmin@ckcm.com</q-item-label>
           </q-item-section>
           <q-item-section side color="indigo">
             <q-icon name="las la-chevron-circle-down" />
